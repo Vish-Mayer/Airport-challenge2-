@@ -5,7 +5,7 @@ class Plane
   attr_reader :airbourne
   attr_reader :timestamp
 
-  def initialize
+  def initialize()
     @airbourne = true
     @timestamp = [] 
   end

@@ -1,4 +1,6 @@
-require_relative 'plane' 
+require_relative 'plane'
+require_relative 'weather'
+
 
 class Airport
 
@@ -13,7 +15,7 @@ class Airport
 
   def land(plane)
     raise "#{plane} has already landed" unless plane.in_air? #needs testing 
-    raise "Cannot land: #{self} is full" if full? 
+    raise "Cannot land: #{self} is full" if full?  
     @hanger << plane
     plane.landed
     "#{plane}: Landing confirmed"
