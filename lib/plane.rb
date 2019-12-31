@@ -2,25 +2,25 @@ require_relative 'airport'
 
 class Plane
 
-  attr_reader :airbourne
+  attr_reader :airborne
   attr_reader :timestamp
 
   def initialize()
-    @airbourne = true
+    @airborne = true
     @timestamp = [] 
   end
 
   def in_air? 
-    @airbourne  
+    @airborne  
   end
 
   def landed
-    @airbourne = false 
+    @airborne = false 
     land_timestamp
   end
 
   def take_off
-    @airbourne = true
+    @airborne = true
     take_off_timestamp 
   end
 
