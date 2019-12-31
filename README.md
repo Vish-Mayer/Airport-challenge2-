@@ -16,7 +16,14 @@ This is my soloution to the airport Challenge
                 =  ===(_________)
 
 ```
+Getting started
+=================
 
+Fork this repo, and clone it to your local machine
+Run the command gem install bundle (if you don't have bundle already)
+When the installation completes, run bundle
+
+#Specifications
 * Creates an Airport with a custom capacity. The capacity for the airport can
 also be set at creation by the user.
 * Creates a plane that can be requested to land and take off by the airport.
@@ -26,3 +33,14 @@ match the airborne status which is held by the plane.
 * The airport will confirm whenever a plane has successfully landed or taken
 off.
 * The plane logs a timestamp when it has landed or taken off.
+* The plane cannot land or take off when there is a weather warning.
+
+Index
+=================
+
+* 'airport' = Airport.new(DEFAULT CAPACITY is 5 if left blank)
+* 'plane' = Plane.new
+
+* airport.land(plane)
+* airport.take_off(plane)
+* plane.timestamp
