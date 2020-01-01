@@ -27,11 +27,11 @@ class Plane
   private 
 
   def land_timestamp
-    @timestamp << "Landed at #{Time.new}" 
+    @timestamp << "Landed at #{Time.now.strftime("%c")}" 
   end 
 
   def take_off_timestamp
-    @timestamp << "Took off at #{Time.new}" 
+    @timestamp << "Took off at #{Time.now.strftime("%c")}" 
   end 
   
 end  
