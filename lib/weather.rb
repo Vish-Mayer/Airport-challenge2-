@@ -1,11 +1,6 @@
 class Weather
-  attr_accessor :weather
 
-  def initialize
-    @weather = rand(10)
-  end
-
-  def stormy?
-    weather <= 3
+  def bad_weather?
+    Kernel.rand(1..6) > 4
   end
 end
