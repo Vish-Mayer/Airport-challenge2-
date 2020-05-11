@@ -1,11 +1,11 @@
 class Weather
-    
+  attr_accessor :weather
 
-  def stormy?
-    forecast == "stormy"
+  def initialize
+    @weather = rand(10)
   end
 
-  def forecast
-    current_weather = rand(5) == 0 ? "stormy" : "clear"
+  def stormy?
+    weather <= 3
   end
 end
