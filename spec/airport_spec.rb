@@ -10,10 +10,9 @@ describe Airport do
   let(:plane3) { double(in_air?: true, landed: false) }
   let(:plane4) { double(in_air?: true, landed: false) }
   let(:plane5) { double(in_air?: true, landed: false) }
-  let(:weather) { double(stormy?: false) }
 
   before do
-    allow(airport).to receive(:stormy?)
+    allow(airport).to receive(:stormy?).and_return false
     airport.land(plane1)
     airport.land(plane2)
     airport.land(plane3)
