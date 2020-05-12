@@ -5,14 +5,15 @@ describe Airport do
 
   subject(:airport) { described_class.new }
   let(:plane) { Plane.new }
-  let(:plane1) { double(in_air?: true, landed: false)}
-  let(:plane2) { double(in_air?: true, landed: false)}
-  let(:plane3) { double(in_air?: true, landed: false)}
-  let(:plane4) { double(in_air?: true, landed: false)}
-  let(:plane5) { double(in_air?: true, landed: false)}
+  let(:plane1) { double(in_air?: true, landed: false) }
+  let(:plane2) { double(in_air?: true, landed: false) }
+  let(:plane3) { double(in_air?: true, landed: false) }
+  let(:plane4) { double(in_air?: true, landed: false) }
+  let(:plane5) { double(in_air?: true, landed: false) }
+  let(:weather) { double(stormy?: false) }
 
   before do
-    allow(Weather).to receive(:stormy?).and_return false
+    allow(airport).to receive(:stormy?)
     airport.land(plane1)
     airport.land(plane2)
     airport.land(plane3)
@@ -25,6 +26,9 @@ describe Airport do
     end
     it 'allows a custom capacity' do
       expect(Airport.new(10).capacity).to eq 10
+    end
+    it 'is initialized with a new instance of weather' do
+      expect(airport.weather_report).to be_an_instance_of(Weather)
     end
   end
 
@@ -40,17 +44,17 @@ describe Airport do
     it 'prevents a plane from landing when the airport is full' do
       airport.land(plane5)
       message = "Cannot land: #{airport} is full"
-      expect{ airport.land(plane) }.to raise_error message
+      expect { airport.land(plane) }.to raise_error message
     end
     it 'raises an error when trying to land a plane that is not in_air?' do
       airport.land(plane)
       message = "#{plane} has already landed"
-      expect{ airport.land(plane) }.to raise_error message
+      expect { airport.land(plane) }.to raise_error message
     end
     it 'prevents a plane from landing in bad weather' do
-      allow(Weather).to receive(:stormy?).and_return true
+      allow(airport).to receive(:stormy?).and_return true
       message = "WEATHER WARNING: Cannot land"
-      expect{ airport.land(plane) }.to raise_error message
+      expect { airport.land(plane) }.to raise_error message
     end
   end
 
@@ -60,10 +64,10 @@ describe Airport do
       expect { airport.take_off(plane) }.to raise_error message
     end
     it 'instructs a plane to take off' do
-       airport.land(plane)
-       airport.take_off(plane)
-       expect(airport.hanger.include? plane).to eq false
-     end
+      airport.land(plane)
+      airport.take_off(plane)
+      expect(airport.hanger.include? plane).to eq false
+    end
     it 'confirms when plane has left the airport' do
       airport.land(plane)
       message = "#{plane}: Take-off confirmed"
@@ -71,13 +75,13 @@ describe Airport do
     end
     it 'raises an error when trying to take off a plane that is in_air?' do
       message = "#{plane}: is already airbourne"
-      expect{ airport.take_off(plane) }.to raise_error message
+      expect { airport.take_off(plane) }.to raise_error message
     end
     it 'prevents a plane from taking off in bad weather' do
       airport.land(plane)
-      allow(Weather).to receive(:stormy?).and_return true
+      allow(airport).to receive(:stormy?).and_return true
       message = "WEATHER WARNING: Cannot take-off"
-      expect{ airport.take_off(plane) }.to raise_error message
+      expect { airport.take_off(plane) }.to raise_error message
     end
   end
 end

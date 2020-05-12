@@ -1,6 +1,10 @@
 class Weather
 
-  def bad_weather?
-    Kernel.rand(1..6) > 4
+  def stormy?
+    forecast == "stormy"
+  end
+
+  def forecast
+    Kernel.rand(5).zero? ? "stormy" : "clear"
   end
 end
